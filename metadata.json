@@ -1,0 +1,6 @@
+{
+  "name": "Tauva Limited",
+  "description": "Premium AI & Financial Technology firm headquartered in Nathan Road, Tsim Sha Tsui, Hong Kong.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

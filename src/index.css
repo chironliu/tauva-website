@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@600;700;850&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Space Grotesk", sans-serif;
+
+  --color-brand-green: #76b900;
+  --color-brand-gold: #d4af37;
+  --color-brand-cyan: #06b6d4;
+  --color-brand-dark: #000000;
+  --color-brand-zinc: #0e0e11;
+  --color-brand-border: rgba(255, 255, 255, 0.08);
+}
+
+@layer utilities {
+  .hero-grid {
+    background-size: 50px 50px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  }
+
+  .accent-gradient-green {
+    background: linear-gradient(135deg, #76b900 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .accent-gradient-gold {
+    background: linear-gradient(135deg, #d4af37 0%, #76b900 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-glow-green {
+    text-shadow: 0 0 20px rgba(118, 185, 0, 0.4);
+  }
+
+  .text-glow-gold {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  }
+
+  .glow-dot {
+    position: relative;
+  }
+
+  .glow-dot::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #76b900;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #76b900;
+  }
+}
+
+/* Animations and scrolling utility configuration */
+::selection {
+  background-color: #76b900;
+  color: #000;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020202;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #76b900;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #030712;
+}
+
+@keyframes float-slow-1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(10%, 12%) scale(1.15);
+  }
+  66% {
+    transform: translate(-8%, -15%) scale(0.9);
+  }
+}
+
+@keyframes float-slow-2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1.1);
+  }
+  40% {
+    transform: translate(-12%, 8%) scale(0.9);
+  }
+  70% {
+    transform: translate(15%, -10%) scale(1.2);
+  }
+}
+
+@keyframes float-slow-3 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(0.95);
+  }
+  45% {
+    transform: translate(8%, -18%) scale(1.1);
+  }
+  75% {
+    transform: translate(-15%, 12%) scale(0.85);
+  }
+}
+
+@keyframes grid-pulse {
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.28;
+  }
+}
+
+.nvidia-glow-blob-1 {
+  animation: float-slow-1 18s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(118, 185, 0, 0.12) 0%, rgba(6, 182, 212, 0.05) 50%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(80px);
+}
+
+.nvidia-glow-blob-2 {
+  animation: float-slow-2 22s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.14) 0%, rgba(13, 148, 136, 0.06) 45%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(100px);
+}
+
+.nvidia-glow-blob-3 {
+  animation: float-slow-3 26s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(118, 185, 0, 0.1) 0%, rgba(16, 185, 129, 0.04) 50%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(95px);
+}
+
+.tech-grid-overlay {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  animation: grid-pulse 8s ease-in-out infinite alternate;
+}
+
+.glass-panel {
+  background: rgba(10, 11, 20, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+.glass-panel-hover {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(118, 185, 0, 0.4);
+  background: rgba(13, 14, 28, 0.65);
+  box-shadow: 0 15px 40px -10px rgba(118, 185, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+/* Premium Tech Logo Stylings */
+.brand-logo-main {
+  font-family: var(--font-display, "Space Grotesk"), sans-serif;
+  letter-spacing: -0.01em;
+  font-weight: 850;
+  background: linear-gradient(135deg, #ffffff 40%, #a4e624 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .brand-logo-main {
+  background: linear-gradient(135deg, #76b900 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 12px rgba(118, 185, 0, 0.45));
+}
+
+
