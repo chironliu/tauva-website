@@ -66,26 +66,25 @@ export default function ContactSection({ lang }: ContactSectionProps) {
   };
 
   return (
-    <section id="contact" className="py-24 sm:py-32 bg-transparent text-white px-6 relative overflow-hidden">
-      {/* Decorative asset mesh */}
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-green/3 rounded-full blur-[140px] pointer-events-none"></div>
-
+    <section id="contact" className="py-16 bg-nv-canvas text-nv-body px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Border block wrapper */}
-        <div className="glass-panel p-8 sm:p-16 md:p-20 border border-white/5 rounded-3xl relative overflow-hidden">
-          
+        <div className="bg-nv-canvas p-8 sm:p-16 md:p-20 border border-nv-hairline rounded-[2px] relative overflow-hidden">
+          {/* Signature Corner Square */}
+          <div className="nv-corner-square top-0 left-0"></div>
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
             
             {/* Left Box (5 Columns) */}
             <div className="lg:col-span-5 flex flex-col justify-between">
               <div>
-                <div className="inline-block text-brand-green font-mono text-xs font-bold uppercase tracking-[0.2em] mb-4">
+                <div className="inline-block text-nv-primary font-mono text-xs font-bold uppercase tracking-[0.2em] mb-4">
                   {lang === 'zh' ? '建立全球机密连接' : 'ESTABLISH SECURE LINK'}
                 </div>
-                <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">
+                <h2 className="text-4xl sm:text-[36px] font-bold tracking-tight text-nv-ink mb-6 leading-[1.25]">
                   {lang === 'zh' ? '联系我们' : 'Contact Us'}
                 </h2>
-                <p className="text-zinc-400 text-sm sm:text-base leading-relaxed mb-10 max-w-sm">
+                <p className="text-nv-mute text-sm sm:text-base leading-relaxed mb-10 max-w-sm">
                   {lang === 'zh'
                     ? '准备好为您的机构组合引入下一代 AI 智能引擎了吗？我们的高级技术咨询团队将在极短时间内评估您的对接方案并建立专线测试账户。'
                     : 'Ready to elevate your portfolios with hyper-clocked quant algorithms? Securely leave your profile, our analysts will follow up.'}
@@ -94,39 +93,39 @@ export default function ContactSection({ lang }: ContactSectionProps) {
                 {/* Contact Coordinates */}
                 <div className="space-y-6">
                   {/* Dedicated Email Address Card with copy action */}
-                  <div className="flex items-center p-4 bg-black/60 rounded-xl border border-white/5 group relative overflow-hidden">
-                    <div className="w-10 h-10 flex items-center justify-center bg-brand-green/10 text-brand-green rounded-lg mr-4">
+                  <div className="flex items-center p-4 bg-nv-surface-soft rounded-[2px] border border-nv-hairline group relative overflow-hidden">
+                    <div className="w-10 h-10 flex items-center justify-center bg-nv-primary/10 text-nv-primary border border-nv-primary/20 rounded-[2px] mr-4">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono">{lang === 'zh' ? '机构联系邮箱' : 'Global Inquiries Email'}</p>
-                      <a href="mailto:Contact@tauva.hk" className="text-sm sm:text-base font-bold text-white hover:text-brand-green transition truncate block font-mono">
+                      <p className="text-[10px] text-nv-mute uppercase tracking-widest font-mono">{lang === 'zh' ? '机构联系邮箱' : 'Global Inquiries Email'}</p>
+                      <a href="mailto:Contact@tauva.hk" className="text-sm sm:text-base font-bold text-nv-ink hover:text-nv-primary transition truncate block font-mono">
                         Contact@tauva.hk
                       </a>
                     </div>
                     <button
                       onClick={handleCopyEmail}
-                      className="p-2 ml-2 hover:bg-zinc-900 rounded-lg text-zinc-500 hover:text-brand-green transition"
+                      className="p-2 ml-2 hover:bg-nv-canvas border border-transparent hover:border-nv-hairline rounded-[2px] text-nv-mute hover:text-nv-primary transition cursor-pointer"
                       title={lang === 'zh' ? '复制邮箱地址' : 'Copy Email'}
                       id="copy-email-btn"
                     >
-                      {copied ? <Check className="w-4 h-4 text-brand-green" /> : <Copy className="w-4 h-4" />}
+                      {copied ? <Check className="w-4 h-4 text-nv-primary" /> : <Copy className="w-4 h-4" />}
                     </button>
                   </div>
 
                   {/* Address coordinates */}
-                  <div className="flex items-start p-4 bg-black/60 rounded-xl border border-white/5">
-                    <div className="w-10 h-10 flex items-center justify-center bg-brand-gold/10 text-brand-gold rounded-lg mr-4 flex-shrink-0">
+                  <div className="flex items-start p-4 bg-nv-surface-soft rounded-[2px] border border-nv-hairline">
+                    <div className="w-10 h-10 flex items-center justify-center bg-nv-primary/10 text-nv-primary border border-nv-primary/20 rounded-[2px] mr-4 flex-shrink-0">
                       <MapPin className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono">{lang === 'zh' ? '香港总部运营地址' : 'Hong Kong Headquarter'}</p>
-                      <p className="text-sm font-semibold text-white leading-relaxed mt-0.5">
+                      <p className="text-[10px] text-nv-mute uppercase tracking-widest font-mono">{lang === 'zh' ? '香港总部运营地址' : 'Hong Kong Headquarter'}</p>
+                      <p className="text-sm font-semibold text-nv-ink leading-relaxed mt-0.5">
                         {lang === 'zh'
                           ? '香港九龙尖沙咀弥敦道核心商务大厦'
                           : 'Nathan Road, Tsim Sha Tsui, Kowloon, Hong Kong'}
                       </p>
-                      <span className="text-[10px] text-[#76b900]/80 font-mono italic">
+                      <span className="text-[11px] text-nv-primary font-mono font-bold">
                         {lang === 'zh' ? '★ 直连葵涌和港交所核心算力网点' : '★ Colocated server gateways linked to Kwai Chung server matrix'}
                       </span>
                     </div>
@@ -135,7 +134,7 @@ export default function ContactSection({ lang }: ContactSectionProps) {
               </div>
 
               {/* Legal advisory footer */}
-              <div className="mt-12 lg:mt-0 font-mono text-[9px] text-zinc-500 leading-relaxed border-t border-white/5 pt-6">
+              <div className="mt-12 lg:mt-0 font-mono text-[10px] text-nv-mute leading-relaxed border-t border-nv-hairline pt-6 uppercase font-bold">
                 SECURE END-TO-END TLS ENCRYPTION ENABLED // INBOX RECON: SUCCESSFUL // REG_ID: TAUVA_HK_90A
               </div>
             </div>
@@ -144,21 +143,21 @@ export default function ContactSection({ lang }: ContactSectionProps) {
             <div className="lg:col-span-7">
               {submitSuccess ? (
                 /* Submission Success Banner Dialog */
-                <div className="bg-brand-green/10 border border-brand-green/30 rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[380px] animate-fadeIn" id="contact-success-dialog">
-                  <div className="w-16 h-16 bg-brand-green/20 text-brand-green rounded-full flex items-center justify-center mb-6">
+                <div className="bg-nv-primary/10 border border-nv-primary/30 rounded-[2px] p-8 text-center flex flex-col items-center justify-center min-h-[380px] animate-fadeIn" id="contact-success-dialog">
+                  <div className="w-16 h-16 bg-nv-primary/20 text-nv-primary rounded-full flex items-center justify-center mb-6">
                     <Check className="w-8 h-8 animate-bounce" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-white mb-3">
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-nv-ink mb-3">
                     {lang === 'zh' ? '咨询信息递交成功' : 'Transmission Completed'}
                   </h3>
-                  <p className="text-zinc-400 text-sm max-w-md mx-auto leading-relaxed mb-8">
+                  <p className="text-nv-mute text-sm max-w-md mx-auto leading-relaxed mb-8">
                     {lang === 'zh'
                       ? '您的数据指标包裹已被位于尖沙咀弥敦道节点的服务器成功捕获，算法专员将在 1 小时内向您的企业电子邮箱发送回函及机密算力测试账户。'
                       : 'Our algorithm team in Nathan Road node has successfully logged your details. We will check compatibility thresholds shortly.'}
                   </p>
                   <button
                     onClick={() => setSubmitSuccess(false)}
-                    className="px-6 py-2.5 bg-brand-green text-brand-dark font-extrabold text-xs uppercase tracking-wider roundedHover transition-all"
+                    className="px-6 py-2.5 bg-nv-primary text-black font-bold text-xs uppercase tracking-wider rounded-[2px] hover:bg-nv-primary-dark transition-all cursor-pointer"
                   >
                     {lang === 'zh' ? '回返表单' : 'SUBMIT ANOTHER'}
                   </button>
@@ -167,7 +166,7 @@ export default function ContactSection({ lang }: ContactSectionProps) {
                 /* Contact Form UI */
                 <form onSubmit={handleSubmit} className="space-y-6" id="consultation-form">
                   {formError && (
-                    <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-xs p-4 rounded-lg flex items-center space-x-2">
+                    <div className="bg-nv-error/10 border border-nv-error/20 text-nv-error text-xs p-4 rounded-[2px] flex items-center space-x-2">
                       <AlertCircle className="w-4 h-4" />
                       <span>{formError}</span>
                     </div>
@@ -175,35 +174,35 @@ export default function ContactSection({ lang }: ContactSectionProps) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-2">
-                        {lang === 'zh' ? '您的姓名' : 'Your name'} <span className="text-brand-green">*</span>
+                      <label className="block text-[10px] font-bold text-nv-mute uppercase tracking-widest mb-2">
+                        {lang === 'zh' ? '您的姓名' : 'Your name'} <span className="text-nv-primary">*</span>
                       </label>
                       <input
                         type="text"
                         placeholder={lang === 'zh' ? '张经理' : 'e.g. John Doe'}
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full p-4 bg-black/40 border border-white/5 rounded-lg focus:border-brand-green outline-none text-white text-sm"
+                        className="w-full p-4 bg-nv-canvas border border-nv-hairline rounded-[2px] focus:border-nv-primary focus:ring-1 focus:ring-nv-primary outline-none text-nv-ink text-sm"
                         id="contact-field-name"
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-2">
-                        {lang === 'zh' ? '机构电子邮箱' : 'Corporate Email'} <span className="text-brand-green">*</span>
+                      <label className="block text-[10px] font-bold text-nv-mute uppercase tracking-widest mb-2">
+                        {lang === 'zh' ? '机构电子邮箱' : 'Corporate Email'} <span className="text-nv-primary">*</span>
                       </label>
                       <input
                         type="email"
                         placeholder="john@firm.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full p-4 bg-black/40 border border-white/5 rounded-lg focus:border-brand-green outline-none text-white text-sm"
+                        className="w-full p-4 bg-nv-canvas border border-nv-hairline rounded-[2px] focus:border-nv-primary focus:ring-1 focus:ring-nv-primary outline-none text-nv-ink text-sm"
                         id="contact-field-email"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-2">
+                    <label className="block text-[10px] font-bold text-nv-mute uppercase tracking-widest mb-2">
                       {lang === 'zh' ? '企业 / 机构名称' : 'Institution / Firm Name'}
                     </label>
                     <input
@@ -211,19 +210,19 @@ export default function ContactSection({ lang }: ContactSectionProps) {
                       placeholder={lang === 'zh' ? 'e.g. 亚太金融联合会 / 某资产管理机构' : 'e.g. Pacific Asset Management'}
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full p-4 bg-black/40 border border-white/5 rounded-lg focus:border-brand-green outline-none text-white text-sm"
+                      className="w-full p-4 bg-nv-canvas border border-nv-hairline rounded-[2px] focus:border-nv-primary focus:ring-1 focus:ring-nv-primary outline-none text-nv-ink text-sm"
                       id="contact-field-company"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-2">
+                    <label className="block text-[10px] font-bold text-nv-mute uppercase tracking-widest mb-2">
                       {lang === 'zh' ? '业务涉及咨询方向' : 'Intended Partnership Domain'}
                     </label>
                     <select
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full p-4 bg-zinc-950 border border-white/5 rounded-lg text-sm text-zinc-300 outline-none focus:border-brand-green cursor-pointer"
+                      className="w-full p-4 bg-nv-canvas border border-nv-hairline rounded-[2px] text-sm text-nv-body outline-none focus:border-nv-primary cursor-pointer"
                       id="contact-field-subject"
                     >
                       <option value="institutional-trading">{lang === 'zh' ? '量化交易与算力赋能合作 (Neural Compute)' : 'Neural Quant Computing'}</option>
@@ -234,15 +233,15 @@ export default function ContactSection({ lang }: ContactSectionProps) {
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-2">
-                      {lang === 'zh' ? '您的具体咨询与技术指标需求描述' : 'Enquiry Description'} <span className="text-brand-green">*</span>
+                    <label className="block text-[10px] font-bold text-nv-mute uppercase tracking-widest mb-2">
+                      {lang === 'zh' ? '您的具体咨询与技术指标需求描述' : 'Enquiry Description'} <span className="text-nv-primary">*</span>
                     </label>
                     <textarea
                       placeholder={lang === 'zh' ? '请简要列出您需要托管的资管容量、感兴趣的模型系列，或者在尖沙咀设立专柜的要求...' : 'Please specify estimated scale, asset class, or specific colocated network requests in Hong Kong...'}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       rows={5}
-                      className="w-full p-4 bg-black/40 border border-white/5 rounded-lg focus:border-brand-green outline-none text-white text-sm resize-none"
+                      className="w-full p-4 bg-nv-canvas border border-nv-hairline rounded-[2px] focus:border-nv-primary focus:ring-1 focus:ring-nv-primary outline-none text-nv-ink text-sm resize-none"
                       id="contact-field-message"
                     ></textarea>
                   </div>
@@ -250,10 +249,10 @@ export default function ContactSection({ lang }: ContactSectionProps) {
                   {/* Submission triggers */}
                   <button
                     type="submit"
-                    className={`w-full py-4 rounded-xl font-extrabold uppercase text-xs tracking-widest text-center flex items-center justify-center space-x-2 transition-all duration-300 ${
+                    className={`w-full py-4 rounded-[2px] font-bold uppercase text-xs tracking-widest text-center flex items-center justify-center space-x-2 transition-all duration-200 cursor-pointer ${
                       isSubmitting
-                        ? 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
-                        : 'bg-brand-green text-brand-dark hover:bg-[#86d200] hover:shadow-[0_0_20px_rgba(118,185,0,0.3)]'
+                        ? 'bg-nv-surface-soft text-nv-ash border border-nv-hairline cursor-not-allowed'
+                        : 'bg-nv-primary text-black hover:bg-nv-primary-dark shadow-none'
                     }`}
                     disabled={isSubmitting}
                     id="submit-consultation-btn"

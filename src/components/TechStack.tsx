@@ -59,20 +59,20 @@ export default function TechStack({ lang }: TechStackProps) {
   const TabIcon = SelectedInfo.icon;
 
   return (
-    <section id="tech" className="py-24 sm:py-32 bg-transparent text-white relative px-6 border-b border-white/5">
-      {/* Decorative absolute element */}
-      <div className="absolute top-0 right-0 w-1/4 h-1/2 border-r border-white/[0.015] pointer-events-none"></div>
+    <section id="tech" className="py-16 bg-nv-canvas text-nv-body relative px-6 border-b border-nv-hairline">
+      {/* Decorative absolute hairline grid coordinate line */}
+      <div className="absolute top-0 right-12 w-px h-full bg-nv-hairline/25 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           
           {/* Text panel (Left: 5 columns equivalent) */}
           <div className="w-full lg:w-5/12">
-            <div className="inline-block text-brand-green font-mono text-xs font-bold uppercase tracking-[0.2em] mb-4">
+            <div className="inline-block text-nv-primary font-mono text-xs font-bold uppercase tracking-[0.2em] mb-4">
               {lang === 'zh' ? '智算硬件与技术硬核' : 'PHYSICAL HARDWARE COMPLEX'}
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-8">
-              {lang === 'zh' ? '致敬巅峰算力底座' : 'Powering Tomorrow with Supercomputing'}
+            <h2 className="text-3xl sm:text-[36px] font-bold tracking-tight text-nv-ink mb-8 leading-[1.25]">
+              {lang === 'zh' ? '致敬巔峰算力底座' : 'Powering Tomorrow with Supercomputing'}
             </h2>
 
             {/* Tab Switches */}
@@ -83,10 +83,10 @@ export default function TechStack({ lang }: TechStackProps) {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`w-full p-4 rounded-xl border text-xs sm:text-sm font-semibold text-left transition flex items-center space-x-4 uppercase tracking-wider ${
+                    className={`w-full p-4 rounded-[2px] border text-xs sm:text-sm font-bold text-left transition flex items-center space-x-4 uppercase tracking-wider cursor-pointer ${
                       isCurrent
-                        ? 'bg-white/10 border-brand-green/40 text-brand-green'
-                        : 'bg-white/[0.02] border-white/5 text-zinc-400 hover:text-white hover:border-white/10'
+                        ? 'bg-nv-ink border-nv-ink text-white shadow-none'
+                        : 'bg-nv-surface-soft border-nv-hairline text-nv-body hover:text-nv-ink hover:border-nv-mute'
                     }`}
                   >
                     <span>{tab === 'infrastructure' ? '01' : tab === 'algorithms' ? '02' : '03'}</span>
@@ -97,7 +97,7 @@ export default function TechStack({ lang }: TechStackProps) {
                         ? (lang === 'zh' ? '时间序列算法层' : 'Temporal Logic Models')
                         : (lang === 'zh' ? '绿色液态冷却监测' : 'Hydro Thermal Telemetry')}
                     </span>
-                    <Zap className={`w-4 h-4 ${isCurrent ? 'opacity-100 text-[#76b900]' : 'opacity-20'}`} />
+                    <Zap className={`w-4 h-4 ${isCurrent ? 'opacity-100 text-nv-primary' : 'opacity-20 text-nv-mute'}`} />
                   </button>
                 );
               })}
@@ -105,36 +105,39 @@ export default function TechStack({ lang }: TechStackProps) {
           </div>
 
           {/* Interactive display board (Right: 7 columns equivalent) */}
-          <div className="w-full lg:w-7/12 glass-panel rounded-2xl p-6 sm:p-10 relative overflow-hidden flex flex-col justify-between min-h-[420px]">
+          <div className="w-full lg:w-7/12 bg-nv-canvas border border-nv-hairline rounded-[2px] p-6 sm:p-10 relative overflow-hidden flex flex-col justify-between min-h-[420px]">
+            {/* Signature Corner Square */}
+            <div className="nv-corner-square top-0 left-0"></div>
+
             {/* Top row */}
             <div>
-              <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-6">
+              <div className="flex items-center justify-between border-b border-nv-hairline pb-4 mb-6">
                 <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-brand-green/10 text-brand-green rounded">
-                    <TabIcon className="w-5 h-5 animate-pulse" />
+                  <div className="p-2 bg-nv-primary/10 text-nv-primary border border-nv-primary/20 rounded-[2px]">
+                    <TabIcon className="w-5 h-5" />
                   </div>
-                  <h3 className="font-extrabold text-white text-lg sm:text-xl tracking-tight">
+                  <h3 className="font-bold text-nv-ink text-lg sm:text-xl tracking-tight">
                     {SelectedInfo.title}
                   </h3>
                 </div>
-                <div className="text-[10px] font-mono text-brand-green bg-brand-green/5 border border-brand-green/20 px-2.5 py-1 rounded">
+                <div className="text-[11px] font-mono text-nv-primary bg-nv-primary/10 border border-nv-primary/20 px-2.5 py-1 rounded-[2px]">
                   SYS_OK_V26
                 </div>
               </div>
 
-              <p className="text-zinc-400 text-sm sm:text-base leading-relaxed mb-8">
+              <p className="text-nv-body text-sm sm:text-base leading-relaxed mb-8">
                 {SelectedInfo.desc}
               </p>
             </div>
 
             {/* Bottom details specifications array */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-white/5 pt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-nv-hairline pt-8">
               {SelectedInfo.specs.map((spec, i) => (
-                <div key={i} className="bg-zinc-950/60 p-4 rounded-xl border border-white/5 flex flex-col">
-                  <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider mb-1">
+                <div key={i} className="bg-nv-surface-soft p-4 rounded-[2px] border border-nv-hairline flex flex-col">
+                  <span className="text-[10px] text-nv-mute font-bold uppercase tracking-wider mb-1">
                     {spec.name}
                   </span>
-                  <span className="text-sm font-semibold text-white font-mono tracking-tight">
+                  <span className="text-sm font-bold text-nv-ink font-mono tracking-tight">
                     {spec.value}
                   </span>
                 </div>

@@ -17,46 +17,36 @@ export default function App() {
   const [lang, setLang] = useState<'zh' | 'en'>('zh');
 
   return (
-    <div className="bg-[#03050f] text-white min-h-screen font-sans selection:bg-brand-green selection:text-black relative overflow-x-hidden">
-      {/* Dynamic Animated Ambient Orbs and Grids */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Atmospheric Glowing Orbs */}
-        <div className="absolute top-[-15%] right-[-10%] w-[70vw] h-[70vw] md:w-[50vw] md:h-[50vw] rounded-full nvidia-glow-blob-1 opacity-70" />
-        <div className="absolute top-[35%] left-[-15%] w-[80vw] h-[80vw] md:w-[55vw] md:h-[55vw] rounded-full nvidia-glow-blob-2 opacity-60" />
-        <div className="absolute bottom-[-10%] right-[10%] w-[75vw] h-[75vw] md:w-[50vw] md:h-[50vw] rounded-full nvidia-glow-blob-3 opacity-60" />
-        
-        {/* Interactive Deep Grid Overlay */}
-        <div className="absolute inset-0 tech-grid-overlay" />
-      </div>
-
-      <div className="relative z-10">
+    <div className="bg-[#000000] text-[#1a1a1a] min-h-screen font-sans selection:bg-nv-primary selection:text-black relative overflow-x-hidden">
+      <div className="relative z-10 flex flex-col min-h-screen">
         {/* Central Header Navigation */}
         <Header lang={lang} setLang={setLang} />
 
         {/* Main Structural Modules */}
-        <main>
-        {/* Full Screen High Tech Hero */}
-        <Hero lang={lang} />
+        <main className="flex-1">
+          {/* Full Screen High Tech Hero */}
+          <Hero lang={lang} />
 
-        {/* Bento Grid Core Business Solutions */}
-        <CoreSolutions lang={lang} />
+          {/* Bento Grid Core Business Solutions */}
+          <CoreSolutions lang={lang} />
 
-        {/* Dynamic Sandbox AI Simulator Terminal */}
-        <InteractiveTerminal lang={lang} />
+          {/* Dynamic Sandbox AI Simulator Terminal */}
+          <InteractiveTerminal lang={lang} />
 
-        {/* Tech Stack Hardware Specifications */}
-        <TechStack lang={lang} />
+          {/* Tech Stack Hardware Specifications */}
+          <TechStack lang={lang} />
 
-        {/* Hong Kong Tsim Sha Tsui Nodal Coordinates and Advantage */}
-        <HongKongAdvantage lang={lang} />
+          {/* Hong Kong Tsim Sha Tsui Nodal Coordinates and Advantage */}
+          <HongKongAdvantage lang={lang} />
 
-        {/* Contact Us Form & Copyable E-mail */}
-        <ContactSection lang={lang} />
-      </main>
+          {/* Contact Us Form & Copyable E-mail */}
+          <ContactSection lang={lang} />
+        </main>
 
-      {/* Corporate Legal & Compliance Footer */}
-      <Footer lang={lang} />
+        {/* Corporate Legal & Compliance Footer */}
+        <Footer lang={lang} />
       </div>
     </div>
   );
 }
+

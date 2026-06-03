@@ -36,34 +36,34 @@ export default function Header({ lang, setLang }: HeaderProps) {
       id="site-navigation"
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#03050f]/80 backdrop-blur-md py-4 border-b border-white/10 shadow-lg shadow-black/40'
-          : 'bg-transparent py-6'
+          ? 'bg-[#000000]/95 backdrop-blur-sm py-4 border-b border-nv-hairline-strong shadow-[0_0_5px_0_rgba(0,0,0,0.3)]'
+          : 'bg-[#000000]/50 py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* LOGO */}
         <a href="#" className="flex items-center space-x-2 group" id="logo-anchor">
           <div className="text-2xl font-extrabold tracking-tighter text-white flex items-center">
-            <span className="brand-logo-main">TAUVA</span>
+            <span className="text-white hover:text-nv-primary transition-colors">TAUVA</span>
             <span className="text-zinc-500 text-xs font-normal ml-1.5 hidden sm:inline-block tracking-widest font-sans border-l border-white/10 pl-1.5">無界雲彗</span>
-            <span className="text-brand-green animate-pulse ml-0.5">_</span>
+            <span className="text-nv-primary animate-pulse ml-0.5">_</span>
           </div>
-          <span className="text-[10px] font-mono tracking-widest text-[#76b900]/80 h-fit bg-[#76b900]/10 px-1.5 py-0.5 rounded ml-2 border border-[#76b900]/20 uppercase">
+          <span className="text-[11px] font-mono tracking-widest text-[#76b900] bg-[#76b900]/10 px-1.5 py-0.5 rounded-[2px] ml-2 border border-[#76b900]/20 uppercase">
             AI & FIN
           </span>
         </a>
 
         {/* DESKTOP NAV */}
         <div className="hidden lg:flex items-center space-x-8">
-          <ul className="flex items-center space-x-8 text-xs font-semibold uppercase tracking-widest text-zinc-400">
+          <ul className="flex items-center space-x-8 text-xs font-bold uppercase tracking-widest text-zinc-400">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="hover:text-brand-green transition-colors duration-200 py-2 relative group"
+                  className="hover:text-nv-primary transition-colors duration-200 py-2 relative group"
                 >
                   {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-green group-hover:w-full transition-all duration-300"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-nv-primary group-hover:w-full transition-all duration-300"></span>
                 </a>
               </li>
             ))}
@@ -74,7 +74,7 @@ export default function Header({ lang, setLang }: HeaderProps) {
           {/* LANGUAGE SELECTOR */}
           <button
             onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}
-            className="flex items-center space-x-1.5 text-xs font-semibold text-zinc-300 hover:text-brand-green transition-all"
+            className="flex items-center space-x-1.5 text-xs font-bold text-zinc-300 hover:text-nv-primary transition-all cursor-pointer"
             id="lang-toggle-desktop"
             title="Switch Language"
           >
@@ -85,7 +85,7 @@ export default function Header({ lang, setLang }: HeaderProps) {
           {/* CTA BUTTON */}
           <a
             href="#contact"
-            className="flex items-center space-x-1 px-4 py-2 bg-brand-green text-brand-dark font-extrabold text-xs uppercase hover:bg-[#86d200] transition-colors duration-200"
+            className="flex items-center space-x-1 px-4 py-2 bg-nv-primary text-black font-bold text-xs uppercase hover:bg-nv-primary-dark transition-colors duration-200 rounded-[2px]"
             id="cta-contact-desktop"
           >
             <span>{lang === 'zh' ? '建立諮詢' : 'ENQUIRE'}</span>
@@ -97,14 +97,14 @@ export default function Header({ lang, setLang }: HeaderProps) {
         <div className="lg:hidden flex items-center space-x-4">
           <button
             onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}
-            className="p-2 text-zinc-400 hover:text-white"
+            className="p-2 text-zinc-400 hover:text-white cursor-pointer"
             id="mobile-lang-toggle"
           >
             <Globe className="w-4 h-4" />
           </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 text-zinc-400 hover:text-white transition-colors focus:outline-none"
+            className="p-2 text-zinc-400 hover:text-white transition-colors focus:outline-none cursor-pointer"
             id="mobile-menu-toggle"
             aria-label="Toggle Menu"
           >
@@ -115,14 +115,14 @@ export default function Header({ lang, setLang }: HeaderProps) {
 
       {/* MOBILE DRAWER */}
       {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-brand-dark/95 backdrop-blur-lg border-b border-white/10 py-6 px-6 z-40 transition-all">
-          <ul className="flex flex-col space-y-4 text-sm font-semibold uppercase tracking-wider text-zinc-300 mb-6">
+        <div className="lg:hidden absolute top-full left-0 w-full bg-[#000000]/95 backdrop-blur-md border-b border-nv-hairline-strong py-6 px-6 z-40 transition-all">
+          <ul className="flex flex-col space-y-4 text-sm font-bold uppercase tracking-wider text-zinc-300 mb-6">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block py-2 hover:text-brand-green transition-colors"
+                  className="block py-2 hover:text-nv-primary transition-colors"
                 >
                   {link.label}
                 </a>
@@ -132,7 +132,7 @@ export default function Header({ lang, setLang }: HeaderProps) {
           <a
             href="#contact"
             onClick={() => setIsOpen(false)}
-            className="block text-center py-3 bg-brand-green text-brand-dark font-extrabold text-xs uppercase hover:bg-[#86d200] transition-colors duration-200"
+            className="block text-center py-3 bg-nv-primary text-black font-bold text-xs uppercase hover:bg-nv-primary-dark transition-colors duration-200 rounded-[2px]"
           >
             {lang === 'zh' ? '建立諮詢' : 'ENQUIRE NOW'}
           </a>

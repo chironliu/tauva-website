@@ -158,19 +158,17 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
   const maxVal = Math.max(...allValues) + 2;
 
   return (
-    <section id="terminal" className="py-24 bg-transparent text-white border-b border-white/5 relative px-6">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-brand-cyan/4 rounded-full blur-[140px] pointer-events-none"></div>
-
+    <section id="terminal" className="py-16 bg-nv-surface-soft text-nv-body border-b border-nv-hairline relative px-6">
       <div className="max-w-7xl mx-auto">
         {/* Title */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-block text-brand-green font-mono text-xs font-bold uppercase tracking-[0.2em] mb-4">
+          <div className="inline-block text-nv-primary font-mono text-xs font-bold uppercase tracking-[0.2em] mb-4">
             {lang === 'zh' ? '交互式高階應用沙盒' : 'INTERACTIVE QUANT SANDBOX'}
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-[36px] font-bold tracking-tight text-nv-ink mb-4 leading-[1.25]">
             {lang === 'zh' ? '智算金融決策終端' : 'Smart AI Quant Terminal'}
           </h2>
-          <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-nv-mute text-sm sm:text-base leading-relaxed">
             {lang === 'zh' 
               ? '實時運行由 Tauva Limited (無界雲彗有限公司) 部署的高維量化測算策略，並在真實的測試環境下評估香港與全球資產的預計增值區間。' 
               : 'Directly launch our cloud backtesting model client-side to forecast index pathways and system parameters.'}
@@ -180,10 +178,13 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
         {/* Master Board Container */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch" id="terminal-grid">
           {/* Controls Panel (5 Cols) */}
-          <div className="lg:col-span-5 glass-panel p-6 sm:p-8 rounded-2xl flex flex-col justify-between border border-white/10 relative">
+          <div className="lg:col-span-5 bg-nv-canvas p-6 sm:p-8 rounded-[2px] flex flex-col justify-between border border-nv-hairline relative">
+            {/* Signature Corner Square */}
+            <div className="nv-corner-square top-0 left-0"></div>
+
             <div>
-              <div className="text-sm font-bold uppercase text-zinc-400 tracking-wider mb-6 flex items-center space-x-2">
-                <span className="p-1 rounded bg-brand-green/20 text-brand-green">
+              <div className="text-sm font-bold uppercase text-nv-ink tracking-wider mb-6 flex items-center space-x-2">
+                <span className="p-1 rounded-[2px] bg-nv-primary/10 text-nv-primary border border-nv-primary/20">
                   <Cpu className="w-4 h-4" />
                 </span>
                 <span>{lang === 'zh' ? '模型輸入參數配置' : 'Simulation Configurations'}</span>
@@ -191,7 +192,7 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
 
               {/* Asset choice */}
               <div className="mb-6">
-                <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">
+                <label className="block text-[11px] font-bold text-nv-mute uppercase tracking-widest mb-3">
                   {lang === 'zh' ? '1. 測算標的資產' : '1. Target Asset / Index'}
                 </label>
                 <div className="grid grid-cols-2 gap-2">
@@ -199,14 +200,14 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
                     <button
                       key={asset.symbol}
                       onClick={() => !isRunning && setSelectedAsset(asset)}
-                      className={`p-3 text-left rounded-lg border text-xs transition duration-200 ${
+                      className={`p-3 text-left rounded-[2px] border text-xs transition duration-200 cursor-pointer ${
                         selectedAsset.symbol === asset.symbol
-                          ? 'border-brand-green bg-brand-green/10 text-white font-bold'
-                          : 'border-white/5 bg-zinc-950/55 text-zinc-400 hover:border-white/10'
+                          ? 'border-nv-primary bg-nv-primary/10 text-nv-ink font-bold'
+                          : 'border-nv-hairline bg-nv-canvas text-nv-body hover:border-nv-mute'
                       }`}
                       disabled={isRunning}
                     >
-                      <div className="font-mono text-brand-green">{asset.symbol}</div>
+                      <div className="font-mono text-nv-primary font-bold">{asset.symbol}</div>
                       <div className="mt-0.5 truncate">{lang === 'zh' ? asset.name : asset.nameEn}</div>
                     </button>
                   ))}
@@ -215,7 +216,7 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
 
               {/* Strategy Choice */}
               <div className="mb-6">
-                <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">
+                <label className="block text-[11px] font-bold text-nv-mute uppercase tracking-widest mb-3">
                   {lang === 'zh' ? '2. 執行 AI 演算法策略' : '2. Executable AI Strategy'}
                 </label>
                 <div className="space-y-2">
@@ -223,22 +224,22 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
                     <button
                       key={strat}
                       onClick={() => !isRunning && setSelectedStrategy(strat)}
-                      className={`w-full p-3 text-left rounded-lg border text-xs transition flex items-center justify-between ${
+                      className={`w-full p-3 text-left rounded-[2px] border text-xs transition flex items-center justify-between cursor-pointer ${
                         selectedStrategy === strat
-                          ? 'border-brand-green bg-brand-green/10 text-white font-bold'
-                          : 'border-white/5 bg-zinc-950/55 text-zinc-400 hover:border-white/10'
+                          ? 'border-nv-primary bg-nv-primary/10 text-nv-ink font-bold'
+                          : 'border-nv-hairline bg-nv-canvas text-nv-body hover:border-nv-mute'
                       }`}
                       disabled={isRunning}
                     >
                       <div>
-                        <div className="uppercase tracking-wider font-semibold font-mono text-left">
+                        <div className="uppercase tracking-wider font-bold font-mono text-left">
                           {strat.replace('-', ' ')}
                         </div>
-                        <div className="text-[10px] text-zinc-500 mt-0.5 text-left line-clamp-1">
+                        <div className="text-[11px] text-nv-mute mt-0.5 text-left line-clamp-1">
                           {lang === 'zh' ? strategyDescriptions[strat].cn : strategyDescriptions[strat].en}
                         </div>
                       </div>
-                      <span className={`w-1.5 h-1.5 rounded-full ${selectedStrategy === strat ? 'bg-brand-green animate-pulse' : 'bg-transparent'}`}></span>
+                      <span className={`w-1.5 h-1.5 rounded-full ${selectedStrategy === strat ? 'bg-nv-primary animate-pulse' : 'bg-transparent'}`}></span>
                     </button>
                   ))}
                 </div>
@@ -247,18 +248,18 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
               {/* Horizon & Risk Choice */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                 <div>
-                  <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">
+                  <label className="block text-[11px] font-bold text-nv-mute uppercase tracking-widest mb-3">
                     {lang === 'zh' ? '3. 模擬測算時間跨度' : '3. Forecasting Horizon'}
                   </label>
-                  <div className="flex space-x-1 p-1 bg-zinc-950 rounded-lg border border-white/5">
+                  <div className="flex space-x-1 p-1 bg-nv-surface-soft rounded-[2px] border border-nv-hairline">
                     {([30, 90, 180] as const).map((hor) => (
                       <button
                         key={hor}
                         onClick={() => !isRunning && setTimeHorizon(hor)}
-                        className={`flex-1 text-center py-2 text-xs rounded-md transition font-semibold ${
+                        className={`flex-1 text-center py-2 text-xs rounded-[2px] transition font-bold cursor-pointer ${
                           timeHorizon === hor
-                            ? 'bg-zinc-800 text-white font-bold text-brand-green shadow-inner'
-                            : 'text-zinc-500 hover:text-zinc-300'
+                            ? 'bg-nv-ink text-white shadow-none'
+                            : 'text-nv-mute hover:text-nv-ink'
                         }`}
                         disabled={isRunning}
                       >
@@ -269,7 +270,7 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#52525b] uppercase tracking-widest mb-3 text-zinc-500">
+                  <label className="block text-[11px] font-bold uppercase tracking-widest mb-3 text-nv-mute">
                     {lang === 'zh' ? '4. 波動風險承受閾值' : '4. Adaptive Risk Level'}
                   </label>
                   <div className="px-1 text-center">
@@ -279,12 +280,12 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
                       max="95"
                       value={riskFactor}
                       onChange={(e) => !isRunning && setRiskFactor(Number(e.target.value))}
-                      className="w-full accent-brand-green cursor-pointer h-1.5 bg-zinc-800 rounded-lg appearance-none"
+                      className="w-full accent-nv-primary cursor-pointer h-1.5 bg-nv-surface-soft rounded-[2px] appearance-none"
                       disabled={isRunning}
                     />
-                    <div className="flex justify-between text-[10px] text-zinc-500 font-mono mt-1">
+                    <div className="flex justify-between text-[11px] text-nv-mute font-mono mt-1">
                       <span>MIN (LOW)</span>
-                      <span className="text-brand-green font-bold">{riskFactor}%</span>
+                      <span className="text-nv-primary font-bold">{riskFactor}%</span>
                       <span>MAX (HIGH)</span>
                     </div>
                   </div>
@@ -295,10 +296,10 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
             {/* Launch Actions */}
             <button
               onClick={handleRunTest}
-              className={`w-full py-4 rounded-xl font-bold uppercase text-xs tracking-widest text-center flex items-center justify-center space-x-2 transition-all duration-300 ${
+              className={`w-full py-4 rounded-[2px] font-bold uppercase text-xs tracking-widest text-center flex items-center justify-center space-x-2 transition-all duration-200 cursor-pointer ${
                 isRunning
-                  ? 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
-                  : 'bg-brand-green text-brand-dark hover:bg-[#86d200] hover:shadow-[0_0_20px_rgba(118,185,0,0.3)]'
+                  ? 'bg-nv-surface-soft text-nv-ash border border-nv-hairline cursor-not-allowed'
+                  : 'bg-nv-primary text-black hover:bg-nv-primary-dark shadow-none'
               }`}
               disabled={isRunning}
               id="run-calculation-btn"
@@ -309,37 +310,40 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
           </div>
 
           {/* Interactive Screen & Render Charts (7 Cols) */}
-          <div className="lg:col-span-7 glass-panel p-6 sm:p-8 rounded-2xl border border-white/10 flex flex-col justify-between">
+          <div className="lg:col-span-7 bg-nv-canvas p-6 sm:p-8 rounded-[2px] border border-nv-hairline flex flex-col justify-between relative">
+            {/* Signature Corner Square */}
+            <div className="nv-corner-square top-0 left-0"></div>
+
             {/* Screen Header */}
             <div>
-              <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-6">
+              <div className="flex items-center justify-between border-b border-nv-hairline pb-4 mb-6">
                 <div className="flex items-center space-x-2">
                   <span className="flex h-1.5 w-1.5 relative">
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-brand-cyan"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-nv-primary"></span>
                   </span>
-                  <span className="text-xs font-mono text-zinc-400 font-bold uppercase tracking-widest">
-                    {lang === 'zh' ? '超大规模机群算力回显' : 'TAUVA CLOUD REPORT SUMMARY'}
+                  <span className="text-xs font-mono text-nv-mute font-bold uppercase tracking-widest">
+                    {lang === 'zh' ? '超大規模機群算力回顯' : 'TAUVA CLOUD REPORT SUMMARY'}
                   </span>
                 </div>
-                <div className="text-[10px] font-mono text-zinc-600">
+                <div className="text-[11px] font-mono text-nv-mute">
                   REF: TX_72_M8
                 </div>
               </div>
 
               {/* Running state simulator logs */}
               {isRunning ? (
-                <div className="bg-zinc-950 font-mono text-xs rounded-xl p-6 border border-white/5 min-h-[350px] flex flex-col justify-between" id="terminal-monitor">
+                <div className="bg-nv-surface-soft font-mono text-xs rounded-[2px] p-6 border border-nv-hairline min-h-[350px] flex flex-col justify-between" id="terminal-monitor">
                   <div className="space-y-3">
                     {terminalLogs.map((log, idx) => (
-                      <div key={idx} className="text-zinc-300 animate-fadeIn">
+                      <div key={idx} className="text-nv-body animate-fadeIn">
                         {log}
                       </div>
                     ))}
-                    <div className="text-brand-green animate-pulse">■ WAITING FOR QUANT CORES MATRIX INTEGRATION...</div>
+                    <div className="text-nv-primary animate-pulse">■ WAITING FOR QUANT CORES MATRIX INTEGRATION...</div>
                   </div>
                   <div>
-                    <div className="w-full bg-zinc-900 rounded-full h-1 overflow-hidden">
-                      <div className="bg-brand-green h-full transition-all duration-300" style={{ width: `${currentProgress}%` }}></div>
+                    <div className="w-full bg-nv-hairline rounded-[2px] h-1 overflow-hidden">
+                      <div className="bg-nv-primary h-full transition-all duration-300" style={{ width: `${currentProgress}%` }}></div>
                     </div>
                   </div>
                 </div>
@@ -351,34 +355,34 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
                     {simulationResult && (
                       <>
                         {/* Projected return */}
-                        <div className="bg-zinc-950/60 p-4 rounded-xl border border-white/5 flex flex-col justify-center">
-                          <span className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider">{lang === 'zh' ? '預測超額收益率' : 'Alpha Return'}</span>
-                          <span className="text-3xl font-black text-brand-green font-mono mt-1">
+                        <div className="bg-nv-surface-soft p-4 rounded-[2px] border border-nv-hairline flex flex-col justify-center">
+                          <span className="text-[10px] text-nv-mute uppercase font-bold tracking-wider">{lang === 'zh' ? '預測超額收益率' : 'Alpha Return'}</span>
+                          <span className="text-3xl font-bold text-nv-primary font-mono mt-1">
                             +{simulationResult.projectedReturn}%
                           </span>
                         </div>
 
                         {/* Confidence score */}
-                        <div className="bg-zinc-950/60 p-4 rounded-xl border border-white/5 flex flex-col justify-center">
-                          <span className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider">{lang === 'zh' ? '系統決策置信度' : 'AI Confidence'}</span>
-                          <span className="text-2xl font-extrabold text-white font-mono mt-1 flex items-center space-x-1.5">
-                            <Activity className="w-4 h-4 text-brand-green animate-pulse" />
+                        <div className="bg-nv-surface-soft p-4 rounded-[2px] border border-nv-hairline flex flex-col justify-center">
+                          <span className="text-[10px] text-nv-mute uppercase font-bold tracking-wider">{lang === 'zh' ? '系統決策置信度' : 'AI Confidence'}</span>
+                          <span className="text-2xl font-bold text-nv-ink font-mono mt-1 flex items-center space-x-1.5">
+                            <Activity className="w-4 h-4 text-nv-primary animate-pulse" />
                             <span>{simulationResult.confidence}%</span>
                           </span>
                         </div>
 
                         {/* Inference latency */}
-                        <div className="bg-zinc-950/60 p-4 rounded-xl border border-white/5 flex flex-col justify-center">
-                          <span className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider">{lang === 'zh' ? 'GPU 推理算力耗時' : 'Inference Latency'}</span>
-                          <span className="text-xl font-bold text-zinc-300 font-mono mt-1">
+                        <div className="bg-nv-surface-soft p-4 rounded-[2px] border border-nv-hairline flex flex-col justify-center">
+                          <span className="text-[10px] text-nv-mute uppercase font-bold tracking-wider">{lang === 'zh' ? 'GPU 推理算力耗時' : 'Inference Latency'}</span>
+                          <span className="text-xl font-bold text-nv-body font-mono mt-1">
                             {simulationResult.executionTimeMs} ms
                           </span>
                         </div>
 
                         {/* Institutional recommendation */}
-                        <div className="bg-zinc-950/60 p-4 rounded-xl border border-white/5 flex flex-col justify-center">
-                          <span className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider">{lang === 'zh' ? '戰術決策建議' : 'Action Signal'}</span>
-                          <span className="text-sm font-black text-brand-cyan uppercase tracking-widest mt-1">
+                        <div className="bg-nv-surface-soft p-4 rounded-[2px] border border-nv-hairline flex flex-col justify-center">
+                          <span className="text-[10px] text-nv-mute uppercase font-bold tracking-wider">{lang === 'zh' ? '戰術決策建議' : 'Action Signal'}</span>
+                          <span className="text-sm font-bold text-nv-primary uppercase tracking-widest mt-1">
                             ◇ {simulationResult.recommendation}
                           </span>
                         </div>
@@ -387,16 +391,16 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
                   </div>
 
                   {/* Dynamic SVG Vector Line Graph */}
-                  <div className="md:col-span-7 bg-zinc-950/90 rounded-xl p-4 border border-white/5 flex flex-col justify-between min-h-[250px]">
-                    <div className="flex justify-between items-center text-[10px] font-mono text-zinc-500">
+                  <div className="md:col-span-7 bg-nv-surface-soft rounded-[2px] p-4 border border-nv-hairline flex flex-col justify-between min-h-[250px]">
+                    <div className="flex justify-between items-center text-[10px] font-mono text-nv-mute">
                       <span>SIMULATED MODEL (TIME SERIES PROJECTION)</span>
                       <div className="flex space-x-2">
                         <span className="flex items-center space-x-1">
-                          <span className="w-2 h-0.5 bg-zinc-600 inline-block"></span>
+                          <span className="w-2 h-0.5 bg-nv-stone inline-block"></span>
                           <span>{lang === 'zh' ? '大市基準' : 'Baseline'}</span>
                         </span>
                         <span className="flex items-center space-x-1">
-                          <span className="w-2 h-0.5 bg-brand-green inline-block"></span>
+                          <span className="w-2 h-0.5 bg-nv-primary inline-block"></span>
                           <span>{lang === 'zh' ? 'AI 擬合' : 'AI Mode'}</span>
                         </span>
                       </div>
@@ -404,19 +408,19 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
 
                     <div className="relative flex-1 flex items-center justify-center my-4 overflow-hidden">
                       {simulationResult && (
-                        <svg viewBox="0 0 480 200" className="w-full h-full text-zinc-800">
+                        <svg viewBox="0 0 480 200" className="w-full h-full text-nv-hairline">
                           {/* Grid Lines */}
-                          <line x1="15" y1="15" x2="465" y2="15" stroke="rgba(255,255,255,0.02)" />
-                          <line x1="15" y1="100" x2="465" y2="100" stroke="rgba(255,255,255,0.02)" />
-                          <line x1="15" y1="185" x2="465" y2="185" stroke="rgba(255,255,255,0.02)" />
+                          <line x1="15" y1="15" x2="465" y2="15" stroke="rgba(0,0,0,0.06)" />
+                          <line x1="15" y1="100" x2="465" y2="100" stroke="rgba(0,0,0,0.06)" />
+                          <line x1="15" y1="185" x2="465" y2="185" stroke="rgba(0,0,0,0.06)" />
 
                           {/* baseline curve drawing */}
                           <path
-                            d={getSvgPathStr(simulationResult.chartData, 'baseline', minVal, maxVal)}
-                            fill="none"
-                            stroke="#52525b"
-                            strokeWidth="2"
-                            strokeDasharray="4 3"
+                             d={getSvgPathStr(simulationResult.chartData, 'baseline', minVal, maxVal)}
+                             fill="none"
+                             stroke="#898989"
+                             strokeWidth="2"
+                             strokeDasharray="4 3"
                           />
 
                           {/* simulated curve drawing */}
@@ -425,7 +429,6 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
                             fill="none"
                             stroke="#76b900"
                             strokeWidth="3.5"
-                            className="stroke-pulse"
                           />
 
                           {/* Data pointer dots */}
@@ -445,7 +448,7 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
                       )}
                     </div>
 
-                    <div className="flex justify-between font-mono text-[9px] text-zinc-600 border-t border-white/[0.03] pt-2">
+                    <div className="flex justify-between font-mono text-[10px] text-nv-mute border-t border-nv-hairline pt-2">
                       <span>T=0 (TODAY)</span>
                       <span>T+{Math.round(timeHorizon / 2)}D</span>
                       <span>T+{timeHorizon}D (END)</span>
@@ -456,8 +459,8 @@ export default function InteractiveTerminal({ lang }: InteractiveTerminalProps) 
             </div>
 
             {/* Note info */}
-            <div className="mt-8 bg-zinc-950/40 border border-white/[0.05] p-4 rounded-xl flex items-start space-x-3 text-zinc-500 text-xs leading-relaxed">
-              <Info className="w-4 h-4 text-[#76b900] flex-shrink-0 mt-0.5" />
+            <div className="mt-8 bg-nv-surface-soft border border-nv-hairline p-4 rounded-[2px] flex items-start space-x-3 text-nv-mute text-xs leading-relaxed">
+              <Info className="w-4 h-4 text-nv-primary flex-shrink-0 mt-0.5" />
               <span>
                 {lang === 'zh'
                   ? '重要披露：上述擬合訊號旨在展示由 Tauva Limited (無界雲彗有限公司) 承製的專有並行演算法在數學回溯時的加速驗證性能。並不對未來實際資本交易提供任何剛性保證聲明。'
