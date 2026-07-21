@@ -78,18 +78,18 @@ export default function Footer({ lang }: FooterProps) {
             </h4>
             <ul className="space-y-2 text-xs text-nv-on-dark-mute">
               <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  {lang === 'zh' ? '法律服务条款 (Terms of Service)' : 'Terms of Service'}
+                <a href="#terms" className="hover:text-white transition-colors">
+                  {lang === 'zh' ? '法律服務條款 (Terms of Service)' : 'Terms of Service'}
+                </a>
+              </li>
+              <li>
+                <a href="#privacy" className="hover:text-white transition-colors">
+                  {lang === 'zh' ? '隱私合規白皮書 (Privacy Policy)' : 'Privacy Policy'}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  {lang === 'zh' ? '隐私合规白皮书 (Privacy Policy)' : 'Privacy Guideline'}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  {lang === 'zh' ? '香港证监会 (SFC) 常规牌照合规' : 'SFC Statutory Declarations'}
+                  {lang === 'zh' ? '香港證監會 (SFC) 常規牌照合規' : 'SFC Statutory Declarations'}
                 </a>
               </li>
               <li>

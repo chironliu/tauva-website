@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe, ArrowUpRight } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, Globe, ArrowUpRight, ChevronDown, Smartphone, Box } from 'lucide-react';
 
 interface HeaderProps {
   lang: 'zh' | 'en';
@@ -14,6 +14,8 @@ interface HeaderProps {
 export default function Header({ lang, setLang }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +23,17 @@ export default function Header({ lang, setLang }: HeaderProps) {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setProductsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const navLinks = [
@@ -34,21 +47,21 @@ export default function Header({ lang, setLang }: HeaderProps) {
   return (
     <nav
       id="site-navigation"
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-[9999] transition-all duration-300 ${
         scrolled
-          ? 'bg-[#000000]/95 backdrop-blur-sm py-4 border-b border-nv-hairline-strong shadow-[0_0_5px_0_rgba(0,0,0,0.3)]'
+          ? 'bg-[#000000]/95 backdrop-blur-md py-4 border-b border-nv-hairline-strong shadow-lg'
           : 'bg-[#000000]/50 py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* LOGO */}
-        <a href="#" className="flex items-center space-x-2 group" id="logo-anchor">
+        <a href="#home" className="flex items-center space-x-2 group" id="logo-anchor">
           <div className="text-2xl font-extrabold tracking-tighter text-white flex items-center">
             <span className="text-white hover:text-nv-primary transition-colors">TAUVA</span>
             <span className="text-zinc-500 text-xs font-normal ml-1.5 hidden sm:inline-block tracking-widest font-sans border-l border-white/10 pl-1.5">無界雲彗</span>
             <span className="text-nv-primary animate-pulse ml-0.5">_</span>
           </div>
-          <span className="text-[11px] font-mono tracking-widest text-[#76b900] bg-[#76b900]/10 px-1.5 py-0.5 rounded-[2px] ml-2 border border-[#76b900]/20 uppercase">
+          <span className="text-[11px] font-mono tracking-widest text-[#76b900] bg-[#76b900]/10 px-1.5 py-0.5 rounded-[2px] ml-2 border border-[#76b900]/20 uppercase hidden md:inline-block">
             AI & FIN
           </span>
         </a>
@@ -56,6 +69,44 @@ export default function Header({ lang, setLang }: HeaderProps) {
         {/* DESKTOP NAV */}
         <div className="hidden lg:flex items-center space-x-8">
           <ul className="flex items-center space-x-8 text-xs font-bold uppercase tracking-widest text-zinc-400">
+            {/* Products Dropdown */}
+            <li className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setProductsOpen(!productsOpen)}
+                className={`flex items-center space-x-1 py-2 transition-colors duration-200 ${productsOpen ? 'text-nv-primary' : 'hover:text-nv-primary'}`}
+              >
+                <span>{lang === 'zh' ? '產品' : 'Products'}</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${productsOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {/* Dropdown Menu */}
+              <div 
+                className={`absolute top-full left-1/2 -translate-x-1/2 mt-4 w-56 bg-[#0a0a0a] border border-nv-hairline-strong rounded-xl shadow-2xl p-2 transition-all duration-300 origin-top ${productsOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}
+              >
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#0a0a0a] border-t border-l border-nv-hairline-strong rotate-45"></div>
+                <div className="relative z-10 flex flex-col space-y-1">
+                  <a href="#castdice" onClick={() => setProductsOpen(false)} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors group/item">
+                    <div className="w-8 h-8 rounded-md bg-nv-primary/10 text-nv-primary flex items-center justify-center group-hover/item:scale-110 transition-transform">
+                      <Smartphone className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-white font-bold text-sm">CastDice</div>
+                      <div className="text-zinc-500 text-[10px] normal-case tracking-normal">{lang === 'zh' ? '信用卡消費決策' : 'Credit Card Assistant'}</div>
+                    </div>
+                  </a>
+                  <a href="#pakrent" onClick={() => setProductsOpen(false)} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors group/item">
+                    <div className="w-8 h-8 rounded-md bg-blue-500/10 text-blue-500 flex items-center justify-center group-hover/item:scale-110 transition-transform">
+                      <Box className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-white font-bold text-sm">PakRent</div>
+                      <div className="text-zinc-500 text-[10px] normal-case tracking-normal">{lang === 'zh' ? '智能租賃平台' : 'Smart Rental Platform'}</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </li>
+
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
@@ -115,8 +166,24 @@ export default function Header({ lang, setLang }: HeaderProps) {
 
       {/* MOBILE DRAWER */}
       {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-[#000000]/95 backdrop-blur-md border-b border-nv-hairline-strong py-6 px-6 z-40 transition-all">
+        <div className="lg:hidden absolute top-full left-0 w-full bg-[#000000]/95 backdrop-blur-md border-b border-nv-hairline-strong py-6 px-6 z-40 transition-all shadow-2xl">
           <ul className="flex flex-col space-y-4 text-sm font-bold uppercase tracking-wider text-zinc-300 mb-6">
+            
+            {/* Mobile Products Section */}
+            <li className="pb-4 border-b border-white/10">
+              <div className="text-zinc-500 text-xs mb-3">{lang === 'zh' ? '產品' : 'Products'}</div>
+              <div className="flex flex-col space-y-3 pl-2">
+                <a href="#castdice" onClick={() => setIsOpen(false)} className="flex items-center space-x-2 text-white">
+                  <Smartphone className="w-4 h-4 text-nv-primary" />
+                  <span>CastDice</span>
+                </a>
+                <a href="#pakrent" onClick={() => setIsOpen(false)} className="flex items-center space-x-2 text-white">
+                  <Box className="w-4 h-4 text-blue-500" />
+                  <span>PakRent</span>
+                </a>
+              </div>
+            </li>
+
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a

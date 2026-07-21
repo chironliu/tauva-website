@@ -13,8 +13,12 @@ import HongKongAdvantage from './components/HongKongAdvantage';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
-export default function App() {
-  const [lang, setLang] = useState<'zh' | 'en'>('zh');
+interface AppProps {
+  lang: 'zh' | 'en';
+  setLang: (lang: 'zh' | 'en') => void;
+}
+
+export default function App({ lang, setLang }: AppProps) {
 
   return (
     <div className="bg-[#000000] text-[#1a1a1a] min-h-screen font-sans selection:bg-nv-primary selection:text-black relative overflow-x-hidden">

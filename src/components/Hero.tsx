@@ -19,9 +19,25 @@ export default function Hero({ lang }: HeroProps) {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[#000000] pt-28 pb-16 px-6">
+      
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+        <video 
+          className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover opacity-50" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+        >
+          <source src="https://www.confluxfortune.com/media/cg_hk_bg.mp4" type="video/mp4" />
+        </video>
+        {/* Dark gradient overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/60 via-[#000000]/40 to-[#000000]"></div>
+      </div>
+
       {/* Decorative vertical hairline coordinate lines (NVIDIA technical style) */}
-      <div className="absolute right-12 top-0 w-px h-full bg-nv-hairline-strong/20 pointer-events-none"></div>
-      <div className="absolute left-12 bottom-0 w-full h-px bg-nv-hairline-strong/20 pointer-events-none"></div>
+      <div className="absolute right-12 top-0 w-px h-full bg-nv-hairline-strong/20 pointer-events-none z-10"></div>
+      <div className="absolute left-12 bottom-0 w-full h-px bg-nv-hairline-strong/20 pointer-events-none z-10"></div>
 
       <div className="relative z-10 max-w-5xl text-center flex flex-col items-center">
         {/* Status indicator */}
